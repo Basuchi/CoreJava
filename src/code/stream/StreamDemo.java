@@ -3,6 +3,7 @@ package code.stream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class StreamDemo {
@@ -64,6 +65,13 @@ public class StreamDemo {
 
 
         System.out.println("===========================<Student Name & marks >================================================");
-         map.stream().sorted(Comparator.comparing(Student::getName).thenComparing(Student::getMarks)).collect(Collectors.toList()).forEach(ss->System.out.println(ss.getName()+"("+ss.getMarks()+")"));
+        map.stream().sorted(Comparator.comparing(Student::getName).thenComparing(Student::getMarks)).collect(Collectors.toList()).forEach(ss->System.out.println(ss.getName()+"("+ss.getMarks()+")"));
+
+        sorted.stream().forEach(System.out::println);
+        System.out.println("===========================<3 Maximum marks of Student  >================================================");
+
+        Optional<Student> thirdMaxStd =  map.stream().sorted(Comparator.comparingDouble(Student::getMarks).reversed()).skip(2).findFirst();
+
+        Optional<Student> marks = map.stream().collect(Collectors.maxBy(Comparator.comparing(Student::getMarks)));
     }
 }
