@@ -71,7 +71,12 @@ public class StreamDemo {
         System.out.println("===========================<3 Maximum marks of Student  >================================================");
 
         Optional<Student> thirdMaxStd =  map.stream().sorted(Comparator.comparingDouble(Student::getMarks).reversed()).skip(2).findFirst();
-
+        System.out.println(thirdMaxStd.toString());
         Optional<Student> marks = map.stream().collect(Collectors.maxBy(Comparator.comparing(Student::getMarks)));
+
+        System.out.println("===========================<Minimum Student  marks >================================================");
+
+        Student maxStudent = map.stream().min(Comparator.comparing(Student::getMarks)).get();
+        System.out.print(maxStudent.toString());
     }
 }
